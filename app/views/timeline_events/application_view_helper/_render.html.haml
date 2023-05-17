@@ -1,0 +1,11 @@
+.timeline{ options, id: name }
+  .timeline__wrap
+    .timeline__items
+      - events.each_with_index do |event, i|
+        - timeline_item_class = options[:alternate_positions] ? (i.even? ? 'timeline__item--left' : 'timeline__item--right') : nil
+        .timeline__item{ class: timeline_item_class }
+          .timeline__content{ style: "background-color: #{event.color}"}
+            %h4
+              = event.title
+              %small= I18n.l(event.happened_at)
+            %p= event.description
